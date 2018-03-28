@@ -27,6 +27,13 @@
                                 '{{ g.locale }}');">{{ _('Translate') }}</a>
                 </span>
                 {% endif %}
+                {% if post.author == current_user %}
+                <br>
+                <a href="{{ url_for('main.delete', id=post.id) }}">
+                  {{ _('dleet') }}
+                </a>
+                {% endif %}
+
             </td>
         </tr>
     </table>

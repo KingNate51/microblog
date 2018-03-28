@@ -202,3 +202,15 @@ def notifications():
         'data': n.get_data(),
         'timestamp': n.timestamp
     } for n in notifications])
+
+@bp.route('/delete/<id>')
+@login_required
+def delete(id):
+    post = Post.query.filter(Post.id == id, Post.author == current_user).first()
+    if post:
+        db.session.delete(post)
+        db.session.commit()
+        flash(_('deleted boi.'))
+    else:
+        flash(_('na homie'))
+    return redirect(url_for('main.user', username=current_user.username))
