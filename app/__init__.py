@@ -37,11 +37,11 @@ def create_app(config_class=Config):
     bootstrap.init_app(app)
     moment.init_app(app)
     babel.init_app(app)
+    app.redis = Redis.from_url(app.config['redis://h:p590dbd59d42e5bab51926bc6ef30678a872946a7d8afe61671a0d92ff792202e@ec2-50-16-50-168.compute-1.amazonaws.com:40749'])
+    app.task_queue = rq.Queue('microblog-tasks', connection=app.redis)
+
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
         if app.config['ELASTICSEARCH_URL'] else None
-
-    app.redis = Redis.from_url(app.config['REDIS_URL'])
-    app.task_queue = rq.Queue('microblog-tasks', connection=app.redis)
 
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
