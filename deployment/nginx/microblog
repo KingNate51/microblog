@@ -1,4 +1,4 @@
-server {
+'''server {
     # listen on port 80 (http)
     listen 80;
     server_name _;
@@ -34,4 +34,4 @@ server {
         alias /home/ubuntu/microblog/static;
         expires 30d;
     }
-}
+}'''

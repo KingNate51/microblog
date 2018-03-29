@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+"""FROM python:3.6-alpine
 
 RUN adduser -D microblog
 
@@ -20,4 +20,4 @@ RUN chown -R microblog:microblog ./
 USER microblog
 
 EXPOSE 5000
-ENTRYPOINT ["./boot.sh"]
+ENTRYPOINT ["./boot.sh"]"""
