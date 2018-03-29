@@ -21,4 +21,4 @@ class Config(object):
     MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY')
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
     POSTS_PER_PAGE = 25
-    REDIS_URL = os.environ.get('REDIS_URL') or 'redis://h:pbfa5ba7d7d1b2eb985e476642f53bd89ba950580c1984416c413ad882c1418c9@ec2-34-201-226-230.compute-1.amazonaws.com:14629'
+    REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'

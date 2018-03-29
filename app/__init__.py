@@ -10,7 +10,7 @@ from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_babel import Babel, lazy_gettext as _l
 from elasticsearch import Elasticsearch
-import redis
+from redis import Redis
 import rq
 from config import Config
 
@@ -36,8 +36,8 @@ def create_app(config_class=Config):
     bootstrap.init_app(app)
     moment.init_app(app)
     babel.init_app(app)
-    app.redis = redis.from_url(app.config['REDIS_URL'])
-    app.task_queue = rq.queue('microblog-tasks', connection=app.redis)
+    app.redis = Redis.from_url(app.config['REDIS_URL'])
+    app.task_queue = rq.Queue('microblog-tasks', connection=app.redis)
 
     from app.api import bp as api_bp
     app.register_blueprint(api_bp, url_prefix='/api')
