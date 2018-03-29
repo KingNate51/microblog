@@ -37,7 +37,7 @@ def create_app(config_class=Config):
     moment.init_app(app)
     babel.init_app(app)
     app.redis = redis.from_url(app.config['REDIS_URL'])
-    app.task_queue = rq.Queue('microblog-tasks', connection=app.redis)
+    app.task_queue = rq.queue('microblog-tasks', connection=app.redis)
 
     from app.api import bp as api_bp
     app.register_blueprint(api_bp, url_prefix='/api')
